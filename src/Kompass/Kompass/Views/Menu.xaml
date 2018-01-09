@@ -1,0 +1,83 @@
+﻿<Window x:Class="Kompass.Views.Menu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kompass.Views"
+        mc:Ignorable="d"
+        Title="Menu" Height="300" Width="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <TabControl>
+            <TabItem Header="Compass">
+                <StackPanel>
+                    <Slider Maximum="100" Value="50" Ticks="100" TickPlacement="BottomRight"/>
+                    <CheckBox Content="Anti Aliasing"/>
+                    <UniformGrid Columns="2">
+                        <CheckBox Content="Course Line" IsChecked="True"/>
+                        <ComboBox/>
+                        <CheckBox Content="Turning Angle" IsChecked="True"/>
+                        <ComboBox/>
+                        <Label Content="True Bearing:"/>
+                        <TextBox/>
+                    </UniformGrid>
+                    <CheckBox Content="Course Up Mode"/>
+                    <CheckBox Content="Wind Direction"/>
+
+                </StackPanel>
+
+            </TabItem>
+            <TabItem Header="Serial Port">
+                <StackPanel>
+                    <TextBox MinLines="5" Text="COM3"/>
+                    <Button Content="Port suchen"/>
+                    <UniformGrid Columns="2">
+                        <Label Content="Baud Rate:"/>
+                        <ComboBox/>
+                        <Label/>
+                        <Button Content="OK"/>
+                    </UniformGrid>
+                    <Border>
+                        <Grid>
+
+                        <Separator  />
+                        <TextBlock Background="White" Text="Experimental" HorizontalAlignment="Center"/>
+                            </Grid>
+
+                    </Border>
+                    <TextBlock Text="Verbinden mit TCP Server:"/>
+                    <UniformGrid Columns="3">
+                        <TextBlock Text="Address"/>
+                        <TextBlock Text="Port"/>
+                        <Label/>
+                        <TextBox Text="127.0.0.1"/>
+                        <TextBox Text="8888"/>
+                        <CheckBox Content="Start" VerticalAlignment="Center"/>
+                    </UniformGrid>
+                </StackPanel>
+
+            </TabItem>
+            <TabItem Header="?">
+                <DockPanel>
+                    <TextBlock/>
+                    <StackPanel DockPanel.Dock="Bottom">
+                        <TextBlock Text="NMEA Data"/>
+                        <TextBox BorderThickness="1" BorderBrush="Black"></TextBox>
+                    </StackPanel>
+
+                    <StackPanel HorizontalAlignment="Right" DockPanel.Dock="Bottom" Orientation="Horizontal" VerticalAlignment="Bottom">
+                        <TextBlock Text="Wind Speed"/>
+
+                        <TextBox  BorderThickness="1" MinWidth="50" BorderBrush="Black"/>
+                    </StackPanel>
+                </DockPanel>
+            </TabItem>
+        </TabControl>
+        <Slider Grid.Column="1" Orientation="Vertical" Ticks="100" Maximum="1" LargeChange="0.5" TickPlacement="TopLeft"/>
+
+
+    </Grid>
+</Window>

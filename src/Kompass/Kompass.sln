@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kompass", "Kompass\Kompass.csproj", "{EC33F732-2FD4-4DD7-9BC9-CEF6AB2A926B}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Kompass.Shared", "..\Kompass.Shared\Kompass.Shared.shproj", "{0B04BB00-ED1B-4E0D-8659-8E4D45A10948}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\Kompass.Shared\Kompass.Shared.projitems*{0b04bb00-ed1b-4e0d-8659-8e4d45a10948}*SharedItemsImports = 13
+		..\Kompass.Shared\Kompass.Shared.projitems*{ec33f732-2fd4-4dd7-9bc9-cef6ab2a926b}*SharedItemsImports = 4
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC33F732-2FD4-4DD7-9BC9-CEF6AB2A926B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC33F732-2FD4-4DD7-9BC9-CEF6AB2A926B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC33F732-2FD4-4DD7-9BC9-CEF6AB2A926B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC33F732-2FD4-4DD7-9BC9-CEF6AB2A926B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {83464386-1F83-4BF2-9041-8333178793B6}
+	EndGlobalSection
+EndGlobal

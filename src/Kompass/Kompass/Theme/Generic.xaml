@@ -1,0 +1,194 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:Kompass.Shared.Controls">
+    <Style x:Key="SliderRepeatButton" TargetType="RepeatButton">
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="IsTabStop" Value="false" />
+        <Setter Property="Focusable" Value="false" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RepeatButton">
+                    <Border Background="Transparent"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type RepeatButton}">
+        <Setter Property="Background" Value="Blue"/>
+    </Style>
+    <Style TargetType="{x:Type CheckBox}">
+        <Setter Property="Margin" Value="4"/>
+    </Style>
+    <Style TargetType="{x:Type ComboBox}">
+        <Setter Property="Margin" Value="4"/>
+    </Style>
+    <Style TargetType="{x:Type TextBox}">
+        <Setter Property="Margin" Value="4"/>
+    </Style>
+    <Style TargetType="{x:Type Thumb}">
+        <Setter Property="Background" Value="Red"/>
+    </Style>
+
+    <ControlTemplate x:Key="Slider"  TargetType="Slider">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TickBar  x:Name="TopTick"  Fill="LightGray" VerticalAlignment="Top"   SnapsToDevicePixels="True" Grid.Row="0" Placement="Top" Height="5" Visibility="Visible"/>
+            <Border BorderBrush="LightGray"  BorderThickness="0,0,0,1" ></Border>
+            <Border x:Name="TrackBackground" VerticalAlignment="Center" Margin="0,-10,0,0" BorderBrush="Red" Background="Red" Height="3"   Grid.Row="1"  BorderThickness="1"/>
+            <Track Grid.Row="1" x:Name="PART_Track" Margin="0,-10,0,0"  >
+                <Track.DecreaseRepeatButton>
+                    <RepeatButton Style="{StaticResource SliderRepeatButton1}"  Command="Slider.DecreaseLarge" />
+                </Track.DecreaseRepeatButton>
+                <Track.Thumb>
+                    <Thumb Style="{StaticResource SliderThumb}" Margin="0,-20,0,0" />
+                </Track.Thumb>
+                <Track.IncreaseRepeatButton>
+                    <RepeatButton Style="{StaticResource SliderRepeatButton}" Command="Slider.IncreaseLarge" />
+                </Track.IncreaseRepeatButton>
+            </Track>
+            <TextBlock Text="0" Grid.Row="1" Margin="0,15,0,0"></TextBlock>
+            <TickBar x:Name="BottomTick" Fill="LightGray"   SnapsToDevicePixels="True" Grid.Row="2"   Placement="Bottom" Height="4" Visibility="Collapsed" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="TickPlacement"  Value="TopLeft">
+                <Setter TargetName="TopTick" Property="Visibility"  Value="Visible" />
+            </Trigger>
+            <Trigger Property="TickPlacement" Value="BottomRight">
+                <Setter TargetName="BottomTick"  Property="Visibility"  Value="Visible" />
+            </Trigger>
+            <Trigger Property="TickPlacement" Value="Both">
+                <Setter TargetName="TopTick" Property="Visibility" Value="Visible" />
+                <Setter TargetName="BottomTick" Property="Visibility" Value="Visible" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="Horizontal_Slider" TargetType="Slider">
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Style.Triggers>
+            <Trigger Property="Orientation" Value="Horizontal">
+                <Setter Property="MinHeight" Value="21" />
+                <Setter Property="MinWidth" Value="104" />
+                <Setter Property="Template" Value="{StaticResource Slider}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="Vertical_Slider" TargetType="Slider">
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Style.Triggers>
+            <Trigger Property="Orientation" Value="Vertical">
+                <Setter Property="MinHeight" Value="21" />
+                <Setter Property="MinWidth" Value="104" />
+                <Setter Property="Template" Value="{StaticResource Slider}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+     
+    <Style TargetType="{x:Type controls:Options}">
+        <Setter Property="Template" >
+            <Setter.Value>
+<ControlTemplate TargetType="{x:Type controls:Options}" >
+     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <TabControl SelectedIndex="0">
+            <TabItem Header="Compass">
+                <StackPanel>
+                    <Slider Maximum="100" Value="50" Ticks="100" TickPlacement="BottomRight"/>
+                    <CheckBox Content="Anti Aliasing" x:Name="PART_AntiAliasing"/>
+                    <UniformGrid Columns="2">
+                        <CheckBox Content="Course Line" IsChecked="True" x:Name="PART_CourseLine"/>
+                        <ComboBox/>
+                        <CheckBox Content="Turning Angle" IsChecked="True" x:Name="PART_TurningAngle"/>
+                        <ComboBox/>
+                        <Label Content="True Bearing:"/>
+                        <TextBox x:Name="Part_TrueBearing"/>
+                    </UniformGrid>
+                    <CheckBox Content="Course Up Mode" x:Name="PART_CourseUpMode"/>
+                    <CheckBox Content="Wind Direction" x:Name="PART_WindDirection"/>
+
+                </StackPanel>
+
+            </TabItem>
+            <TabItem Header="Serial Port">
+                <StackPanel>
+                    <TextBox MinLines="5" Text="COM3"/>
+                    <Button Content="Port suchen"/>
+                    <UniformGrid Columns="2">
+                        <Label Content="Baud Rate:"/>
+                        <ComboBox/>
+                        <Label/>
+                        <Button Content="OK"/>
+                    </UniformGrid>
+                    <Border>
+                        <Grid>
+
+                        <Separator  />
+                        <TextBlock Background="White" Text="Experimental" HorizontalAlignment="Center"/>
+                            </Grid>
+
+                    </Border>
+                    <TextBlock Text="Verbinden mit TCP Server:"/>
+                    <UniformGrid Columns="3">
+                        <TextBlock Text="Address"/>
+                        <TextBlock Text="Port"/>
+                        <Label/>
+                        <TextBox Text="127.0.0.1"/>
+                        <TextBox Text="8888"/>
+                        <CheckBox Content="Start" VerticalAlignment="Center"/>
+                    </UniformGrid>
+                </StackPanel>
+
+            </TabItem>
+            <TabItem Header="?">
+                <DockPanel>
+                    <TextBlock/>
+                    <StackPanel DockPanel.Dock="Bottom">
+                        <TextBlock Text="NMEA Data"/>
+                        <TextBox BorderThickness="1" BorderBrush="Black"></TextBox>
+                    </StackPanel>
+
+                    <StackPanel HorizontalAlignment="Right" DockPanel.Dock="Bottom" Orientation="Horizontal" VerticalAlignment="Bottom">
+                        <TextBlock Text="Wind Speed"/>
+
+                        <TextBox  BorderThickness="1" MinWidth="50" BorderBrush="Black"/>
+                    </StackPanel>
+                </DockPanel>
+            </TabItem>
+        </TabControl>
+        <Slider Grid.Column="1" 
+                
+                Foreground="Black"
+          
+                x:Name="PART_Opacity"
+                Orientation="Vertical"
+                Minimum="0.1"
+                Maximum="1"
+
+                TickFrequency="0.01" 
+
+                IsSnapToTickEnabled="True"
+
+                TickPlacement="BottomRight"/>
+
+
+    </Grid>
+    </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+</ResourceDictionary>
